@@ -6,17 +6,17 @@ function maximumBags(capacity: number[], rocks: number[], additionalRocks: numbe
 
   // Distribute the additional rocks to the rocks with the smallest difference between capacity and number of rocks
   for (const rock of sortedRocks) {
-    const extraCapacity = rock.capacity - rock.rocks;
+    const extraCapacity = rock.capacity - rock.rocks; 
     if (extraCapacity !== 0 && additionalRocks !== 0) {
-      if (additionalRocks >= extraCapacity) {
+      if (additionalRocks >= extraCapacity) { // allocate additional capacity if available.
         rock.rocks += extraCapacity;
         additionalRocks -= extraCapacity;
-      } else {
+      } else { // allocate all remaining rocks.
         rock.rocks += additionalRocks;
         additionalRocks = 0;
       }
     }
-    if (rock.rocks === rock.capacity) {
+    if (rock.rocks === rock.capacity) { // count all rocks with full capacity.
       fullCapacity++;
     }
   }
